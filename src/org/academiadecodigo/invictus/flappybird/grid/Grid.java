@@ -1,6 +1,7 @@
 package org.academiadecodigo.invictus.flappybird.grid;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Grid {
 
@@ -8,7 +9,7 @@ public class Grid {
     private int cellSize = 10;
     private int cols;
     private int rows;
-    private Rectangle field;
+    private Picture field;
 
     public Grid(int cols, int rows) {
         this.cols = cols;
@@ -19,8 +20,8 @@ public class Grid {
      * Initializes the grid
      */
     public void init() {
-        this.field = new Rectangle(PADDING, PADDING, cols * cellSize, rows * cellSize);
-        this.field.draw();
+        field = new Picture(PADDING,PADDING,"/Users/codecadet/Project/FlappyBird/resources/background2-35.gif");
+        field.draw();
     }
 
     public int getCols(){
