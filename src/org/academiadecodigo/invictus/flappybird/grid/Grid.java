@@ -20,7 +20,7 @@ public class Grid {
      * Initializes the grid
      */
     public void init() {
-        field = new Picture(PADDING,PADDING,"/Users/codecadet/Project/FlappyBird/resources/background2-35.gif");
+        field = new Picture(PADDING,PADDING, "/background2-35.gif");
         field.draw();
     }
 
