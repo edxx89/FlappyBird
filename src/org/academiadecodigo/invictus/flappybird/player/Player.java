@@ -32,11 +32,15 @@ public class Player {
        switch (direction) {
 
            case UP:
-               image.translate(0,-10);
+               if(image.getY()> 7) {
+                   image.translate(0, -10);
+               }
                break;
 
            case DOWN:
-               image.translate(0,10);
+               if(image.getY()< 451) {
+                   image.translate(0, 10);
+               }
                break;
 
            case NULL:
@@ -46,7 +50,15 @@ public class Player {
 
     }
 
+    public Picture getImage(){
+        return image;
+    }
+
     public boolean isDead() {
         return dead;
+    }
+
+    public void die(){
+        dead = true;
     }
 }
