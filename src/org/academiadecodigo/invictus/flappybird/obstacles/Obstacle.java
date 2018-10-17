@@ -1,34 +1,30 @@
 package org.academiadecodigo.invictus.flappybird.obstacles;
 
-import org.academiadecodigo.simplegraphics.graphics.Color;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Obstacle {
 
-    private Rectangle downRectangle;
-    private Rectangle upRectangle;
+    private Picture downRectangle;
+    private Picture upRectangle;
 
     public Obstacle(){
-        downRectangle = new Rectangle(450,250,50,250);
-        downRectangle.setColor(Color.GREEN);
-        downRectangle.fill();
-        upRectangle = new Rectangle(450,0,50,200);
-        upRectangle.setColor(Color.GREEN);
-        upRectangle.fill();
-
+        downRectangle = new Picture(450,300, "tinoDown.png");
+        downRectangle.draw();
+        upRectangle = new Picture(450,0,"carlaoUp.png");
+        upRectangle.draw();
 
     }
 
     public void move(){
-        downRectangle.translate(-1,0);
-        upRectangle.translate(-1,0);
+        downRectangle.translate(-2,0);
+        upRectangle.translate(-2,0);
     }
 
-    public Rectangle getDownRectangle(){
+    public Picture getDownRectangle(){
         return downRectangle;
     }
 
-    public Rectangle getUpRectangle() {
+    public Picture getUpRectangle() {
         return upRectangle;
     }
 }

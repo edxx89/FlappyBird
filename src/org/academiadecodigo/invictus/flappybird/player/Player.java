@@ -13,7 +13,7 @@ public class Player {
 
 
     public Player(){
-        image = new Picture(10, 150 , "character2.png");
+        image = new Picture(10, 150 , "bird.png");
         image.draw();
         direction = Direction.NULL;
     }
