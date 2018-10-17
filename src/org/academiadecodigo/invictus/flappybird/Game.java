@@ -28,11 +28,12 @@ public class Game {
             }
             player.move();
             obstacle.move();
+            checkCollision();
         }
     }
 
     public void checkCollision(){
-        if(player.getImage().getY() == obstacle.getDownRectangle().getY() || player.getImage().getY() == obstacle.getUpRectangle().getY() ){
+        if(player.getImage().getX()+ player.getImage().getWidth() == obstacle.getDownRectangle().getX() || player.getImage().getX() + player.getImage().getWidth() == obstacle.getUpRectangle().getX() ){
             player.die();
         }
     }
