@@ -4,7 +4,6 @@ package org.academiadecodigo.invictus.flappybird.player;
 import org.academiadecodigo.invictus.flappybird.Direction;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.sql.SQLOutput;
 
 public class Player {
 
@@ -15,9 +14,6 @@ public class Player {
 
     public Player(){
         image = new Picture(10, 150 , "character2.png");
-
-        //image.translate( image.getX() + 20, 0);
-
         image.draw();
         direction = Direction.NULL;
     }
