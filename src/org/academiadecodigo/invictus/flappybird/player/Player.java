@@ -13,7 +13,7 @@ public class Player {
 
 
     public Player(){
-        image = new Picture(10, 150 , "bird.png");
+        image = new Picture(10, 150 , "bird copy.png");
         image.draw();
         direction = Direction.NULL;
     }
@@ -28,13 +28,13 @@ public class Player {
        switch (direction) {
 
            case UP:
-               if(image.getY()> 7) {
+               if(image.getY() > 7) {
                    image.translate(0, -10);
                }
                break;
 
            case DOWN:
-               if(image.getY()< 451) {
+               if(image.getY() < 445) {
                    image.translate(0, 10);
                }
                break;

@@ -18,50 +18,41 @@ public class Game {
         player = new Player();
         key = new KeyboardListener(player);
         obstacle = new Obstacle();
-
-
-
-
     }
 
 
     public void start() {
+
         while (!player.isDead()) {
             try {
                 Thread.sleep(20);
+
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
 
             }
             player.move();
             obstacle.move(-2);
-
             checkCollision();
         }
     }
 
-
-
-
-
     public void checkCollision(){
-        if (player.getImage().getX() < obstacle.getBottomChosen().getX() + obstacle.getBottomChosen().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacle.getBottomChosen().getX() &&
-                player.getImage().getY() < obstacle.getBottomChosen().getY() + obstacle.getBottomChosen().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacle.getBottomChosen().getY()){
+        if (player.getImage().getX() < obstacle.getBottomPic().getX() + obstacle.getBottomPic().getWidth() &&
+                player.getImage().getX() + player.getImage().getWidth() > obstacle.getBottomPic().getX() &&
+                player.getImage().getY() < obstacle.getBottomPic().getY() + obstacle.getBottomPic().getHeight() &&
+                player.getImage().getY() + player.getImage().getHeight() > obstacle.getBottomPic().getY()){
 
             player.die();
         }
 
-        if (player.getImage().getX() < obstacle.getTopChosen().getX() + obstacle.getTopChosen().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacle.getTopChosen().getX() &&
-                player.getImage().getY() < obstacle.getTopChosen().getY() + obstacle.getTopChosen().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacle.getTopChosen().getY()) {
+        if (player.getImage().getX() < obstacle.getTopPic().getX() + obstacle.getTopPic().getWidth() &&
+                player.getImage().getX() + player.getImage().getWidth() > obstacle.getTopPic().getX() &&
+                player.getImage().getY() < obstacle.getTopPic().getY() + obstacle.getTopPic().getHeight() &&
+                player.getImage().getY() + player.getImage().getHeight() > obstacle.getTopPic().getY()) {
 
             player.die();
         }
     }
-
-
 
 }
