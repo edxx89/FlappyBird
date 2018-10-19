@@ -1,9 +1,7 @@
 package org.academiadecodigo.invictus.flappybird;
 
 import org.academiadecodigo.invictus.flappybird.obstacles.Obstacle;
-import org.academiadecodigo.invictus.flappybird.obstacles.ObstacleFactory;
 import org.academiadecodigo.invictus.flappybird.player.Player;
-import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -13,6 +11,7 @@ public class Game {
     private KeyboardListener key;
     private Obstacle obstacle;
 
+
     public void init() {
         background = new Picture(0, 0, "background.gif");
         background.draw();
@@ -20,34 +19,49 @@ public class Game {
         key = new KeyboardListener(player);
         obstacle = new Obstacle();
 
+
+
+
+    }
+
+
+    public void start() {
         while (!player.isDead()) {
             try {
                 Thread.sleep(20);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
+
             }
             player.move();
-            obstacle.move();
+            obstacle.move(-2);
+
             checkCollision();
         }
     }
 
-    public void checkCollision() {
-        if (player.getImage().getX() < obstacle.getDownRectangle().getX() + obstacle.getDownRectangle().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacle.getDownRectangle().getX() &&
-                player.getImage().getY() < obstacle.getDownRectangle().getY() + obstacle.getDownRectangle().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacle.getDownRectangle().getY()) {
+
+
+
+
+    public void checkCollision(){
+        if (player.getImage().getX() < obstacle.getBottomChosen().getX() + obstacle.getBottomChosen().getWidth() &&
+                player.getImage().getX() + player.getImage().getWidth() > obstacle.getBottomChosen().getX() &&
+                player.getImage().getY() < obstacle.getBottomChosen().getY() + obstacle.getBottomChosen().getHeight() &&
+                player.getImage().getY() + player.getImage().getHeight() > obstacle.getBottomChosen().getY()){
 
             player.die();
         }
 
-        if (player.getImage().getX() < obstacle.getUpRectangle().getX() + obstacle.getUpRectangle().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacle.getUpRectangle().getX() &&
-                player.getImage().getY() < obstacle.getUpRectangle().getY() + obstacle.getUpRectangle().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacle.getUpRectangle().getY()) {
+        if (player.getImage().getX() < obstacle.getTopChosen().getX() + obstacle.getTopChosen().getWidth() &&
+                player.getImage().getX() + player.getImage().getWidth() > obstacle.getTopChosen().getX() &&
+                player.getImage().getY() < obstacle.getTopChosen().getY() + obstacle.getTopChosen().getHeight() &&
+                player.getImage().getY() + player.getImage().getHeight() > obstacle.getTopChosen().getY()) {
 
             player.die();
         }
     }
+
+
 
 }

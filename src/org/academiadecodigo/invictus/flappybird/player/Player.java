@@ -32,7 +32,7 @@ public class Player {
             case UP:
                 if (!(previous == Direction.UP)) {
                     if (image.getY() > 7) {
-                        image.translate(0, -30);
+                        image.translate(0, -20);
                     }
                     previous = Direction.UP;
                 }
