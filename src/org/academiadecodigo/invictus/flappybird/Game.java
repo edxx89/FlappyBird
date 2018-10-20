@@ -10,11 +10,15 @@ public class Game {
     private Picture background;
     private KeyboardListener key;
     private Obstacle obstacle;
+    private int counter;
+    private int speed = -2;
+    private Picture gameOver;
 
 
     public void init() {
         background = new Picture(0, 0, "background.gif");
         background.draw();
+        gameOver = new Picture(0,0,"gameover.jpg");
         player = new Player();
         key = new KeyboardListener(player);
         obstacle = new Obstacle();
@@ -22,6 +26,8 @@ public class Game {
 
 
     public void start() {
+
+        obstacle.setObstacles();
 
         while (!player.isDead()) {
             try {
@@ -31,10 +37,21 @@ public class Game {
                 Thread.currentThread().interrupt();
 
             }
+
+            obstacle.move(speed);
             player.move();
-            obstacle.move(-2);
             checkCollision();
+            counter++;
+
+            if (counter > 200) {
+                improveSpeed();
+                counter = 0;
+            }
         }
+    }
+
+    public void gameOver() {
+         gameOver.draw();
     }
 
     public void checkCollision(){
@@ -55,4 +72,8 @@ public class Game {
         }
     }
 
+    public void improveSpeed() {
+        this.speed = --speed;
+    }
+    
 }

@@ -8,8 +8,6 @@ public class Obstacle {
     private Picture[] bottomPicArray;
     private Picture bottomPic;
     private Picture topPic;
-    private int obstaclesSpeed;
-
 
     public Obstacle(){
 
@@ -38,10 +36,11 @@ public class Obstacle {
 
     public void setObstacles() {
         int random = (int) Math.floor(Math.random() * 7);
-        this.topPic = topPicArray[random];
+        topPic = topPicArray[random];
         topPic.draw();
-        this.bottomPic = bottomPicArray[random];
+        bottomPic = bottomPicArray[random];
         bottomPic.draw();
+
     }
 
     public Picture getBottomPic(){
@@ -54,31 +53,17 @@ public class Obstacle {
     }
 
     public void move(int speed) {
-        int counter = 0;
-        this.obstaclesSpeed = speed;
-        setObstacles();
-        while(getBottomPic().getX() > -100) {
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            bottomPic.translate(speed, 0);
-            topPic.translate(speed, 0);
-            counter++;
 
-            if(counter > 150){
-                System.out.println(counter);
-                counter = 0;
-                speed = speed - 2;
-                System.out.println(speed);
-            }
+        if(bottomPic.getX() < - 100) {
+            bottomPic.translate(700,0);
+            topPic.translate(700,0);
+            setObstacles();
         }
-        bottomPic.translate(700,0);
-        topPic.translate(700,0);
-        setObstacles();
-        move(speed);
-        }
+
+        bottomPic.translate(speed,0);
+        topPic.translate(speed,0);
+
+    }
         
 }
 
