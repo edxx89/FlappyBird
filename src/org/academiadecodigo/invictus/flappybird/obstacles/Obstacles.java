@@ -2,14 +2,14 @@ package org.academiadecodigo.invictus.flappybird.obstacles;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Obstacle {
+public class Obstacles {
 
-    private Picture[] topPicArray;
+    private Picture[]  topPicArray;
     private Picture[] bottomPicArray;
     private Picture bottomPic;
     private Picture topPic;
 
-    public Obstacle(){
+    public Obstacles(){
 
         topPicArray = new Picture[7];
 
@@ -31,13 +31,14 @@ public class Obstacle {
         bottomPicArray[4] = new Picture(600, 350, "bottomIceCream.png");
         bottomPicArray[5] = new Picture(600, 400, "bottomChico.png");
         bottomPicArray[6] = new Picture(600, 430, "bottomTurtle.png");
-
     }
 
     public void setObstacles() {
+
         int random = (int) Math.floor(Math.random() * 7);
         topPic = topPicArray[random];
         topPic.draw();
+
         bottomPic = bottomPicArray[random];
         bottomPic.draw();
 
@@ -45,7 +46,6 @@ public class Obstacle {
 
     public Picture getBottomPic(){
         return bottomPic;
-
     }
 
     public Picture getTopPic() {
@@ -63,7 +63,8 @@ public class Obstacle {
         bottomPic.translate(speed,0);
         topPic.translate(speed,0);
 
+
     }
-        
+
 }
 
