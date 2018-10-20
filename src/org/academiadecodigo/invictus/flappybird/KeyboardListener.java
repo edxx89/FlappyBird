@@ -50,6 +50,7 @@ public class KeyboardListener implements KeyboardHandler {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_UP) {
             player.setDirection(Direction.UP);
         }
+
     }
 
     @Override

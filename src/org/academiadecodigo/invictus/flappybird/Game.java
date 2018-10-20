@@ -2,6 +2,8 @@ package org.academiadecodigo.invictus.flappybird;
 
 import org.academiadecodigo.invictus.flappybird.obstacles.Obstacles;
 import org.academiadecodigo.invictus.flappybird.player.Player;
+import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.graphics.Text;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -13,6 +15,7 @@ public class Game {
     private int counter;
     private int speed = -2;
     private Picture gameOver;
+    Text text = new Text(420,20,"SCORE: ");
 
 
     public void init() {
@@ -25,8 +28,16 @@ public class Game {
     }
 
 
+
+
     public void start() {
+        int score = 0;
+        int iCounter = 0;
+
         obstacles.setObstacles();
+        text.grow(20,10);
+        text.setColor(Color.ORANGE);
+        text.draw();
 
         while (!player.isDead()) {
             try {
@@ -40,17 +51,24 @@ public class Game {
             player.move();
             checkCollision();
             counter++;
+            iCounter++;
 
-            if (counter > 100) {
+
+            if (counter > 200) {
                 improvedSpeed();
                 counter = 0;
             }
+
+            if (iCounter == 100) {
+                score += 5;
+                text.setText("SCORE: " + score);
+                iCounter = 0;
+            }
         }
+
     }
 
-    public void gameOver() {
-         gameOver.draw();
-    }
+
 
     public void checkCollision(){
         if (player.getImage().getX() < obstacles.getBottomPic().getX() + obstacles.getBottomPic().getWidth() &&
@@ -68,9 +86,30 @@ public class Game {
 
             player.die();
         }
+
+        if (player.getImage().getX() < obstacles.getSecondBottomPic().getX() + obstacles.getSecondBottomPic().getWidth() &&
+                player.getImage().getX() + player.getImage().getWidth() > obstacles.getSecondBottomPic().getX() &&
+                player.getImage().getY() < obstacles.getSecondBottomPic().getY() + obstacles.getSecondBottomPic().getHeight() &&
+                player.getImage().getY() + player.getImage().getHeight() > obstacles.getSecondBottomPic().getY()){
+
+            player.die();
+        }
+
+        if (player.getImage().getX() < obstacles.getSecondTopPic().getX() + obstacles.getSecondTopPic().getWidth() &&
+                player.getImage().getX() + player.getImage().getWidth() > obstacles.getSecondTopPic().getX() &&
+                player.getImage().getY() < obstacles.getSecondTopPic().getY() + obstacles.getSecondTopPic().getHeight() &&
+                player.getImage().getY() + player.getImage().getHeight() > obstacles.getSecondTopPic().getY()) {
+
+            player.die();
+        }
     }
 
     public void improvedSpeed () {
         speed = --speed;
+    }
+
+
+    public void gameOver() {
+        gameOver.draw();
     }
 }
