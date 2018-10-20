@@ -1,5 +1,6 @@
 package org.academiadecodigo.invictus.flappybird.player;
 
+
 import org.academiadecodigo.invictus.flappybird.Direction;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -9,6 +10,8 @@ public class Player {
     private Picture image;
     private boolean dead;
     private Direction direction;
+    private Direction previous;
+
 
 
     public Player(){
@@ -26,22 +29,26 @@ public class Player {
 
        switch (direction) {
 
-           case UP:
-               if(image.getY() > 7) {
-                   image.translate(0, -10);
-               }
-               break;
+            case UP:
+                if (!(previous == Direction.UP)) {
+                    if (image.getY() > 7) {
+                        image.translate(0, -20);
+                    }
+                    previous = Direction.UP;
+                }
+                break;
 
-           case DOWN:
-               if(image.getY() < 445) {
-                   image.translate(0, 10);
-               }
-               break;
+            case DOWN:
+                if (image.getY() < 451) {
+                    image.translate(0, 10);
+                }
+                break;
 
-           case NULL:
-               image.translate(0,0);
-               break;
-       }
+            case NULL:
+                image.translate(0, 3);
+                previous = Direction.NULL;
+                break;
+        }
 
     }
 

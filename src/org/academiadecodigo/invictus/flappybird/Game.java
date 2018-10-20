@@ -27,9 +27,6 @@ public class Game {
         obstacles = new Obstacles();
     }
 
-
-
-
     public void start() {
         int score = 0;
         int iCounter = 0;
