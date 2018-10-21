@@ -36,7 +36,7 @@ public class Game {
         player = new Player();
         new KeyboardListener(player, this);
         obstacles = new Obstacles();
-        gameOver = new Picture(0, 0, "gameover.jpg");
+        gameOver = new Picture(0, 0, "gameover.png");
         sound = new Sound("/Users/codecadet/Project/FlappyBird/resources/background.wav");
         obstacles.setObstacles();
         text.grow(20, 10);
