@@ -10,11 +10,11 @@ public class Player {
     private Picture image;
     private boolean dead;
     private Direction direction;
-    //private Direction previous;
+    private int i = 0;
 
 
     public Player() {
-        image = new Picture(10, 150, "bird copy.png");
+        image = new Picture(10, 150, "playerCharacter.png");
         image.draw();
         direction = Direction.NULL;
 
@@ -29,21 +29,30 @@ public class Player {
 
         switch (direction) {
 
-            case UP:
-                if (image.getY() > 7) {
+            /*case UP:
+                if (image.getY() > 0) {
                     image.translate(0, -10);
                 }
                 break;
 
             case DOWN:
-                if (image.getY() < 451) {
+                if (image.getY() < 450) {
                     image.translate(0, 10);
+                }
+                break;*/
+            case JUMP:
+                for (int i = 0; i < 6; i++) {
+                    image.translate(0, -i);
                 }
                 break;
 
             case NULL:
-                image.translate(0, 0);
+                for (i = 0; i < 5; i++) {
+                    image.translate(0, i);
+                    System.out.println(i);
+                }
                 break;
+
         }
 
     }

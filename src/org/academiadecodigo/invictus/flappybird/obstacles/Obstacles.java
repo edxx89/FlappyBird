@@ -84,7 +84,7 @@ public class Obstacles {
             swapBottomPictures.remove(0);
         }
 
-        if (swapTopPictures.get(swapTopPictures.size()-1).getX() <= 210 && (swapTopPictures.get(swapTopPictures.size()-1).getX() >= 200)) {
+        if (swapTopPictures.get(swapTopPictures.size()-1).getX() <= 220 && (swapTopPictures.get(swapTopPictures.size()-1).getX() >= 200)) {
             setObstacles();
 
         }

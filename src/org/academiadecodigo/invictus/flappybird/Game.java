@@ -9,34 +9,38 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Player player;
-    private Picture background, secondBackground;
+    private Picture background, secondBackground, thirdBackground;
     private KeyboardListener key;
     private Obstacles obstacles;
     private int counter;
     private int speed = -2;
     private Picture gameOver;
+    private Sound sound;
+
     Text text = new Text(420, 20, "SCORE: ");
 
 
     public void init() {
         background = new Picture(0, 0, "background.gif");
-        secondBackground = new Picture(510,0,"background.gif");
+        secondBackground = new Picture(background.getWidth(),0,"background.gif");
+        thirdBackground = new Picture(background.getWidth() * 2, 0, "background.gif");
         background.draw();
         secondBackground.draw();
         gameOver = new Picture(0, 0, "gameover.jpg");
         player = new Player();
         key = new KeyboardListener(player);
         obstacles = new Obstacles();
+        sound = new Sound("/Users/codecadet/Project/FlappyBird/resources/background.wav");
     }
 
     public void start() {
         int score = 0;
         int iCounter = 0;
-
         obstacles.setObstacles();
         text.grow(20, 10);
         text.setColor(Color.ORANGE);
         text.draw();
+        sound.open();
 
         while (!player.isDead()) {
             try {
@@ -59,7 +63,6 @@ public class Game {
             counter++;
             iCounter++;
 
-
             if (counter > 250) {
                 improvedSpeed();
                 counter = 0;
@@ -71,7 +74,6 @@ public class Game {
                 iCounter = 0;
             }
         }
-
     }
 
 
@@ -100,18 +102,23 @@ public class Game {
         background.translate(speed,0);
         secondBackground.translate(speed,0);
 
-        if (background.getX() < -background.getWidth() && background.getX() > -background.getWidth() - 10) {
+        if (background.getX() < -background.getWidth() && background.getX() > -background.getWidth() - 20) {
             background.translate(background.getWidth() * 2,0);
         }
 
-        if (secondBackground.getX() < -510 && secondBackground.getX() > -520) {
+        if (secondBackground.getX() < -background.getWidth() && secondBackground.getX() > -background.getWidth() - 20) {
             secondBackground.translate(background.getWidth() * 2, 0);
+        }
+
+        if (thirdBackground.getX() < -background.getWidth() && thirdBackground.getX() > -background.getWidth() - 20) {
+            thirdBackground.translate(background.getWidth() * 2, 0);
         }
     }
 
     public void improvedSpeed() {
-        if (speed > -11) {
+        if (speed > -10) {
             speed = --speed;
+            System.out.println(speed);
         }
     }
 
