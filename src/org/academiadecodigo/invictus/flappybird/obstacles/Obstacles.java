@@ -1,7 +1,6 @@
 package org.academiadecodigo.invictus.flappybird.obstacles;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
 import java.util.LinkedList;
 
 public class Obstacles {
@@ -45,7 +44,6 @@ public class Obstacles {
 
         topPictures.remove(random);
         bottomPictures.remove(random);
-
     }
 
     public LinkedList<Picture> getSwapTopPictures() {
@@ -70,7 +68,6 @@ public class Obstacles {
 
         if (swapTopPictures.get(swapTopPictures.size() - 1).getX() <= 220 && (swapTopPictures.get(swapTopPictures.size() - 1).getX() >= 200)) {
             setObstacles();
-
         }
 
         for (int i = 0; i < swapTopPictures.size(); i++) {
