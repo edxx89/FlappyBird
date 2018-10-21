@@ -9,34 +9,45 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Player player;
-    private Picture background, secondBackground, thirdBackground;
-    private KeyboardListener key;
+    private Picture background;
+    private Picture secondBackground;
     private Obstacles obstacles;
     private int counter;
     private int speed = -4;
     private Picture gameOver;
     private Sound sound;
 
-    Text text = new Text(420, 20, "SCORE: ");
-
 
     public void init() {
         background = new Picture(0, 0, "background.jpg");
-        secondBackground = new Picture(background.getWidth(),0, "background.jpg");
-        thirdBackground = new Picture(background.getWidth() * 2, 0, "background.jpg");
+        secondBackground = new Picture(background.getWidth(), 0, "background.jpg");
         background.draw();
         secondBackground.draw();
         player = new Player();
-        key = new KeyboardListener(player);
+        new KeyboardListener(player);
         obstacles = new Obstacles();
-        gameOver = new Picture(0, 0, "gameover.jpg");
+        gameOver = new Picture(0, 0, "gameover.png");
         sound = new Sound("/Users/codecadet/Project/FlappyBird/resources/background.wav");
+        for (int i = 3; i > 0; i--) {
+            Text text = new Text(background.getWidth() / 2 - 15, background.getHeight() / 2 - 10, " " + i);
+            text.grow(30, 20);
+            text.setColor(Color.ORANGE);
+            text.draw();
+            try {
+                Thread.sleep(1000);
+                text.delete();
+
+            } catch (InterruptedException ex) {
+
+            }
+        }
     }
 
     public void start() {
         int score = 0;
         int iCounter = 0;
         obstacles.setObstacles();
+        Text text = new Text(420, 20, "SCORE: ");
         text.grow(20, 10);
         text.setColor(Color.ORANGE);
         text.draw();
@@ -49,13 +60,10 @@ public class Game {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            for (int i = 0; i < obstacles.getSwapTopPictures().size(); i++) {
-                if (player.getImage().getY() > 470 ||
-                        (player.getImage().getY() < 30 && player.getImage().getX() == obstacles.getSwapTopPictures().get(i).getX())) {
-                    player.die();
-                }
-            }
 
+            if (player.getImage().getY() > 470) {
+                player.die();
+            }
             obstacles.move(speed);
             player.move();
             moveBackground();
@@ -99,20 +107,16 @@ public class Game {
         }
     }
 
-    public void moveBackground () {
-        background.translate(speed,0);
-        secondBackground.translate(speed,0);
+    public void moveBackground() {
+        background.translate(speed, 0);
+        secondBackground.translate(speed, 0);
 
         if (background.getX() < -background.getWidth() && background.getX() > -background.getWidth() - 20) {
-            background.translate(background.getWidth() * 2,0);
+            background.translate(background.getWidth() * 2, 0);
         }
 
         if (secondBackground.getX() < -background.getWidth() && secondBackground.getX() > -background.getWidth() - 20) {
             secondBackground.translate(background.getWidth() * 2, 0);
-        }
-
-        if (thirdBackground.getX() < -background.getWidth() && thirdBackground.getX() > -background.getWidth() - 20) {
-            thirdBackground.translate(background.getWidth() * 2, 0);
         }
     }
 

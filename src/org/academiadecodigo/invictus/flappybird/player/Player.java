@@ -2,6 +2,7 @@ package org.academiadecodigo.invictus.flappybird.player;
 
 
 import org.academiadecodigo.invictus.flappybird.Direction;
+import org.academiadecodigo.invictus.flappybird.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
@@ -12,10 +13,21 @@ public class Player {
     private Direction direction;
     private float gravity = 0.3f, gravityPlayer = 3f;
     private float velY = 0, velYplayer = 0;
-    private final float maxSpeed = 15, maxSpeedPlayer = 13 ;
+    private final float maxSpeed = 15;
+    private final float maxSpeedPlayer = 13 ;
+
+    private long previousTime;
+    private long currentTime;
+    private long diffTime;
+
+    public Player() {
+        image = new Picture(35, 150, "playerCharacter.png");
+        image.draw();
+        direction = Direction.NULL;
+    }
 
     public void gravityPlayer () {
-        velYplayer += gravityPlayer;
+        velYplayer += gravityPlayer * 3;
 
         if (velYplayer > maxSpeedPlayer) {
             velYplayer = maxSpeedPlayer;
@@ -25,51 +37,26 @@ public class Player {
     public void gravity() {
 
 
-        velY += gravity*2;
+        velY += gravity * 2;
 
         if (velY > maxSpeed) {
             velY = maxSpeed;
         }
     }
 
-
-    public Player() {
-        image = new Picture(35, 150, "playerCharacter.png");
-        image.draw();
-        direction = Direction.NULL;
-
-    }
-
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-
-    long previousTime;
-    long currentTime;
-    long diffTime;
-
     public void move() {
-
-
 
         switch (direction) {
 
-            /*case UP:
-                if (image.getY() > 0) {
-                    image.translate(0, -10);
-                }
-                break;
-
-            case DOWN:
-                if (image.getY() < 450) {
-                    image.translate(0, 10);
-                }
-                break;*/
             case JUMP:
                 previousTime = System.currentTimeMillis();
                 gravityPlayer();
                 velY = gravity;
+
                 if (image.getY() > 0) {
                     image.translate(0, -velYplayer);
                 }
@@ -87,7 +74,6 @@ public class Player {
                     currentTime = 0;
                 }
                 break;
-
         }
 
     }
