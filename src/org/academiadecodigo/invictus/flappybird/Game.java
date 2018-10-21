@@ -51,7 +51,7 @@ public class Game {
             iCounter++;
 
 
-            if (counter > 200) {
+            if (counter > 250) {
                 improvedSpeed();
                 counter = 0;
             }
@@ -102,7 +102,10 @@ public class Game {
     }
 
     public void improvedSpeed () {
-        speed = --speed;
+        if (speed > -11) {
+            speed = --speed;
+            System.out.println(speed);
+        }
     }
 
 
