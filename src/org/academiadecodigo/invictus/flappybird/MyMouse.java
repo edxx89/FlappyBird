@@ -10,7 +10,6 @@ public class MyMouse implements MouseHandler {
     private Game game;
     private Mouse mouse;
 
-
     public MyMouse(Game game){
         this.game = game;
         mouse = new Mouse(this);
@@ -35,7 +34,9 @@ public class MyMouse implements MouseHandler {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        game.getBackgroundMusic().open();
                         game.init();
+
                     }
                 }).start();
             }

@@ -20,13 +20,13 @@ public class Game {
     private Sound dieAfterSound;
 
 
-    public void newGame(){
+    public void newGame() {
         new MyMouse(this);
         menu = new Picture(0, 0, "menu.jpeg");
         menu.draw();
         backgroundMusic = new Sound("/Users/codecadet/Project/FlappyBird/resources/backgroundMusic.wav");
         dieAfterSound = new Sound("/Users/codecadet/Project/FlappyBird/resources/dieAfterSound.wav");
-
+        gameOver = new Picture(0, 0, "gameover.png");
     }
 
 
@@ -39,17 +39,16 @@ public class Game {
         player = new Player();
         new KeyboardListener(player, this);
         obstacles = new Obstacles();
-        gameOver = new Picture(0, 0, "gameover.png");
-
 
         for (int i = 3; i > 0; i--) {
-            Text text = new Text(background.getWidth() / 2 - 15, background.getHeight() / 2 - 10, " " + i);
-            text.grow(30, 20);
-            text.setColor(Color.ORANGE);
-            text.draw();
+            Text countDown = new Text(background.getWidth() / 2 - 15, background.getHeight() / 2 - 10, " " + i);
+            countDown.grow(30, 20);
+            countDown.setColor(Color.ORANGE);
+            countDown.draw();
+
             try {
                 Thread.sleep(1000);
-                text.delete();
+                countDown.delete();
 
             } catch (InterruptedException ex) {
 
@@ -57,7 +56,7 @@ public class Game {
         }
         player.getImage().draw();
         start();
-        backgroundMusic.open();
+
     }
 
     public void start() {
@@ -78,8 +77,8 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
 
-            if (player.getImage().getY() > 470){
-                    player.die();
+            if (player.getImage().getY() > 470) {
+                player.die();
             }
 
             obstacles.move(speed);
@@ -147,8 +146,16 @@ public class Game {
         }
     }
 
+    public Sound getBackgroundMusic() {
+        return backgroundMusic;
+    }
+
     public Sound getDieAfterSound() {
         return dieAfterSound;
+    }
+
+    public void setSpeed() {
+        speed = -4;
     }
 
     public void gameOver() {

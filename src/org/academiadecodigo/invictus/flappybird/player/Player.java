@@ -14,7 +14,7 @@ public class Player {
     private float velY = 0;
     private float velYplayer = 0;
     private final float maxSpeed = 15;
-    private final float maxSpeedPlayer = 13 ;
+    private final float maxSpeedPlayer = 13;
 
     private long previousTime;
     private long currentTime;
@@ -25,7 +25,7 @@ public class Player {
         direction = Direction.NULL;
     }
 
-    public void gravityPlayer () {
+    public void gravityPlayer() {
         velYplayer += gravityPlayer * 3;
 
         if (velYplayer > maxSpeedPlayer) {
@@ -34,8 +34,6 @@ public class Player {
     }
 
     public void gravity() {
-
-
         velY += gravity * 2;
 
         if (velY > maxSpeed) {
@@ -66,7 +64,7 @@ public class Player {
 
                 diffTime = currentTime - previousTime;
 
-                if(diffTime > 30) {
+                if (diffTime > 30) {
                     gravity();
                     image.translate(0, velY);
                     previousTime = 0;
@@ -74,7 +72,6 @@ public class Player {
                 }
                 break;
         }
-
     }
 
     public Picture getImage() {

@@ -45,6 +45,7 @@ public class KeyboardListener implements KeyboardHandler {
             if (player.isDead()) {
                 game.newGame();
                 player.reviveChico();
+                game.setSpeed();
                 game.getDieAfterSound().close();
             }
         }

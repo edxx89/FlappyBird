@@ -13,8 +13,6 @@ public class Obstacles {
     private LinkedList<Picture> swapBottomPictures = new LinkedList<>();
 
 
-
-
     public Obstacles() {
 
         topPictures.add(new Picture(511, -26, "topTino.png"));
@@ -42,8 +40,8 @@ public class Obstacles {
         swapTopPictures.add(topPictures.get(random));
         swapBottomPictures.add(bottomPictures.get(random));
 
-        swapTopPictures.get(swapTopPictures.size()-1).draw();
-        swapBottomPictures.get(swapBottomPictures.size()-1).draw();
+        swapTopPictures.get(swapTopPictures.size() - 1).draw();
+        swapBottomPictures.get(swapBottomPictures.size() - 1).draw();
 
         topPictures.remove(random);
         bottomPictures.remove(random);
@@ -60,9 +58,9 @@ public class Obstacles {
 
     public void move(int speed) {
 
-        if (swapTopPictures.get(0).getX() < - 88) {
+        if (swapTopPictures.get(0).getX() < -88) {
 
-            swapTopPictures.get(0).translate(700,0);
+            swapTopPictures.get(0).translate(700, 0);
             swapBottomPictures.get(0).translate(700, 0);
             topPictures.add(swapTopPictures.get(0));
             bottomPictures.add(swapBottomPictures.get(0));
@@ -70,7 +68,7 @@ public class Obstacles {
             swapBottomPictures.remove(0);
         }
 
-        if (swapTopPictures.get(swapTopPictures.size()-1).getX() <= 220 && (swapTopPictures.get(swapTopPictures.size()-1).getX() >= 200)) {
+        if (swapTopPictures.get(swapTopPictures.size() - 1).getX() <= 220 && (swapTopPictures.get(swapTopPictures.size() - 1).getX() >= 200)) {
             setObstacles();
 
         }
