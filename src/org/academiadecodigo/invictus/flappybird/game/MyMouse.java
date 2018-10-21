@@ -1,5 +1,6 @@
-package org.academiadecodigo.invictus.flappybird;
+package org.academiadecodigo.invictus.flappybird.game;
 
+import org.academiadecodigo.invictus.flappybird.game.Game;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -9,19 +10,19 @@ public class MyMouse implements MouseHandler {
 
     private Game game;
     private Mouse mouse;
+    private boolean clicked;
 
     public MyMouse(Game game){
         this.game = game;
         mouse = new Mouse(this);
         mouse.addEventListener(MouseEventType.MOUSE_CLICKED);
-
     }
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
 
     }
-    private boolean clicked;
+
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 

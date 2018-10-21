@@ -1,4 +1,4 @@
-package org.academiadecodigo.invictus.flappybird;
+package org.academiadecodigo.invictus.flappybird.game;
 
 import org.academiadecodigo.invictus.flappybird.obstacles.Obstacles;
 import org.academiadecodigo.invictus.flappybird.player.Player;

@@ -1,4 +1,4 @@
-package org.academiadecodigo.invictus.flappybird;
+package org.academiadecodigo.invictus.flappybird.game;
 
 import javax.sound.sampled.*;
 import java.io.File;

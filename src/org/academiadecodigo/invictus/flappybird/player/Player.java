@@ -1,7 +1,7 @@
 package org.academiadecodigo.invictus.flappybird.player;
 
 
-import org.academiadecodigo.invictus.flappybird.Direction;
+import org.academiadecodigo.invictus.flappybird.game.Direction;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
