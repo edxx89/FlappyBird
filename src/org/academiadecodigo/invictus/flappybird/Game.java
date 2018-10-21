@@ -10,36 +10,46 @@ public class Game {
 
     private Player player;
     private Picture background, secondBackground, thirdBackground;
-    private KeyboardListener key;
     private Obstacles obstacles;
     private int counter;
     private int speed = -4;
     private Picture gameOver;
     private Sound sound;
+    private Picture menu;
+
 
     Text text = new Text(420, 20, "SCORE: ");
 
+    public void newGame(){
+        new MyMouse(this);
+        menu = new Picture(0, 0, "Invictus.jpeg");
+        menu.draw();
+    }
+
 
     public void init() {
+        menu.delete();
         background = new Picture(0, 0, "background.jpg");
         secondBackground = new Picture(background.getWidth(),0, "background.jpg");
-        thirdBackground = new Picture(background.getWidth() * 2, 0, "background.jpg");
         background.draw();
         secondBackground.draw();
         player = new Player();
-        key = new KeyboardListener(player);
+        new KeyboardListener(player, this);
         obstacles = new Obstacles();
         gameOver = new Picture(0, 0, "gameover.jpg");
         sound = new Sound("/Users/codecadet/Project/FlappyBird/resources/background.wav");
-    }
-
-    public void start() {
-        int score = 0;
-        int iCounter = 0;
         obstacles.setObstacles();
         text.grow(20, 10);
         text.setColor(Color.ORANGE);
         text.draw();
+        start();
+    }
+
+    public void start() {
+        System.out.println("sfgwgegetgegergerg");
+        int score = 0;
+        int iCounter = 0;
+
         sound.open();
 
         while (!player.isDead()) {
@@ -49,12 +59,11 @@ public class Game {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            for (int i = 0; i < obstacles.getSwapTopPictures().size(); i++) {
-                if (player.getImage().getY() > 470 ||
-                        (player.getImage().getY() < 30 && player.getImage().getX() == obstacles.getSwapTopPictures().get(i).getX())) {
+
+            if (player.getImage().getY() > 470){
                     player.die();
-                }
             }
+
 
             obstacles.move(speed);
             player.move();
@@ -87,6 +96,7 @@ public class Game {
                     player.getImage().getY() + player.getImage().getHeight() > obstacles.getSwapBottomPictures().get(i).getY()) {
 
                 player.die();
+                System.out.println("die");
             }
 
             if (player.getImage().getX() < obstacles.getSwapTopPictures().get(i).getX() + obstacles.getSwapTopPictures().get(i).getWidth() &&
@@ -111,9 +121,6 @@ public class Game {
             secondBackground.translate(background.getWidth() * 2, 0);
         }
 
-        if (thirdBackground.getX() < -background.getWidth() && thirdBackground.getX() > -background.getWidth() - 20) {
-            thirdBackground.translate(background.getWidth() * 2, 0);
-        }
     }
 
     public void improvedSpeed() {

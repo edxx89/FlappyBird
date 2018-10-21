@@ -36,6 +36,7 @@ public class Player {
     public Player() {
         image = new Picture(35, 150, "playerCharacter.png");
         image.draw();
+        System.out.println("Draw player");
         direction = Direction.NULL;
 
     }
