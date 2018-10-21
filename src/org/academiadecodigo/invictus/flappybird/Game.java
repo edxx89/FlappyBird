@@ -15,13 +15,13 @@ public class Game {
     private int counter;
     private int speed = -2;
     private Picture gameOver;
-    Text text = new Text(420,20,"SCORE: ");
+    Text text = new Text(420, 20, "SCORE: ");
 
 
     public void init() {
         background = new Picture(0, 0, "background.gif");
         background.draw();
-        gameOver = new Picture(0,0,"gameover.jpg");
+        gameOver = new Picture(0, 0, "gameover.jpg");
         player = new Player();
         key = new KeyboardListener(player);
         obstacles = new Obstacles();
@@ -31,8 +31,8 @@ public class Game {
         int score = 0;
         int iCounter = 0;
 
-        obstacles.setObstacles();
-        text.grow(20,10);
+        obstacles.setFirstObstacles();
+        text.grow(20, 10);
         text.setColor(Color.ORANGE);
         text.draw();
 
@@ -43,9 +43,16 @@ public class Game {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
+            for (int i = 0; i < obstacles.getSwapTopPictures().size(); i++) {
+                if (player.getImage().getY() > 470 ||
+                        (player.getImage().getY() < 30 && player.getImage().getX() == obstacles.getSwapTopPictures().get(i).getX())) {
+                    player.die();
+                }
+            }
 
             obstacles.move(speed);
             player.move();
+            //moveBackground();
             checkCollision();
             counter++;
             iCounter++;
@@ -66,45 +73,34 @@ public class Game {
     }
 
 
+    public void checkCollision() {
+        for (int i = 0; i < obstacles.getSwapTopPictures().size(); i++) {
 
-    public void checkCollision(){
-        if (player.getImage().getX() < obstacles.getBottomPic().getX() + obstacles.getBottomPic().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacles.getBottomPic().getX() &&
-                player.getImage().getY() < obstacles.getBottomPic().getY() + obstacles.getBottomPic().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacles.getBottomPic().getY()){
+            if (player.getImage().getX() < obstacles.getSwapBottomPictures().get(i).getX() + obstacles.getSwapBottomPictures().get(i).getWidth() &&
+                    player.getImage().getX() + player.getImage().getWidth() > obstacles.getSwapBottomPictures().get(i).getX() &&
+                    player.getImage().getY() < obstacles.getSwapBottomPictures().get(i).getY() + obstacles.getSwapBottomPictures().get(i).getHeight() &&
+                    player.getImage().getY() + player.getImage().getHeight() > obstacles.getSwapBottomPictures().get(i).getY()) {
 
-            player.die();
-        }
+                player.die();
+            }
 
-        if (player.getImage().getX() < obstacles.getTopPic().getX() + obstacles.getTopPic().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacles.getTopPic().getX() &&
-                player.getImage().getY() < obstacles.getTopPic().getY() + obstacles.getTopPic().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacles.getTopPic().getY()) {
+            if (player.getImage().getX() < obstacles.getSwapTopPictures().get(i).getX() + obstacles.getSwapTopPictures().get(i).getWidth() &&
+                    player.getImage().getX() + player.getImage().getWidth() > obstacles.getSwapTopPictures().get(i).getX() &&
+                    player.getImage().getY() < obstacles.getSwapTopPictures().get(i).getY() + obstacles.getSwapTopPictures().get(i).getHeight() &&
+                    player.getImage().getY() + player.getImage().getHeight() > obstacles.getSwapTopPictures().get(i).getY()) {
 
-            player.die();
-        }
-
-        if (player.getImage().getX() < obstacles.getSecondBottomPic().getX() + obstacles.getSecondBottomPic().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacles.getSecondBottomPic().getX() &&
-                player.getImage().getY() < obstacles.getSecondBottomPic().getY() + obstacles.getSecondBottomPic().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacles.getSecondBottomPic().getY()){
-
-            player.die();
-        }
-
-        if (player.getImage().getX() < obstacles.getSecondTopPic().getX() + obstacles.getSecondTopPic().getWidth() &&
-                player.getImage().getX() + player.getImage().getWidth() > obstacles.getSecondTopPic().getX() &&
-                player.getImage().getY() < obstacles.getSecondTopPic().getY() + obstacles.getSecondTopPic().getHeight() &&
-                player.getImage().getY() + player.getImage().getHeight() > obstacles.getSecondTopPic().getY()) {
-
-            player.die();
+                player.die();
+            }
         }
     }
 
-    public void improvedSpeed () {
+    /*public void moveBackground () {
+        background.translate(speed,0);
+    }*/
+
+    public void improvedSpeed() {
         if (speed > -11) {
             speed = --speed;
-            System.out.println(speed);
         }
     }
 

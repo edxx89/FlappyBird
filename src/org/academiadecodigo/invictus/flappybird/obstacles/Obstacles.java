@@ -8,15 +8,14 @@ public class Obstacles {
 
     private Picture[] topPicArray;
     private Picture[] bottomPicArray;
-    private Picture bottomPic;
-    private Picture topPic;
-    private Picture secondBottomPic;
-    private Picture secondTopPic;
-    private Picture thirdBottomPic;
-    private Picture thirdTopPic;
+
     private LinkedList<Picture> topPictures = new LinkedList<>();
     private LinkedList<Picture> bottomPictures = new LinkedList<>();
+
     private LinkedList<Picture> swapTopPictures = new LinkedList<>();
+    private LinkedList<Picture> swapBottomPictures = new LinkedList<>();
+
+
 
 
     public Obstacles() {
@@ -36,7 +35,6 @@ public class Obstacles {
             topPictures.add(topPicArray[i]);
         }
 
-
         bottomPicArray = new Picture[7];
 
         bottomPicArray[0] = new Picture(511, 300, "bottomAudrey.png");
@@ -52,100 +50,78 @@ public class Obstacles {
         }
     }
 
-    public void setObstacles() {
-        int random = (int) Math.floor(Math.random() * 7);
+    public void setFirstObstacles () {
+        int random = (int) (Math.random() * topPictures.size());
 
-        topPic = topPictures.get(random);
-        Picture topPicTemp = topPic;
-        topPic.draw();
+        System.out.println("setFirstObs");
+        System.out.println(swapTopPictures.size());
+
+        swapTopPictures.add(topPictures.get(random));
+        swapBottomPictures.add(bottomPictures.get(random));
+
+        swapTopPictures.get(0).draw();
+        swapBottomPictures.get(0).draw();
+
         topPictures.remove(random);
-        swapTopPictures.add(topPicTemp);
+        bottomPictures.remove(random);
 
+        System.out.println(swapTopPictures.size());
 
-        topPic = topPicArray[random];
-        topPic.draw();
+    }
+    public void setObstacles() {
+        int random = (int) (Math.random() * topPictures.size());
 
-        bottomPic = bottomPicArray[random];
-        bottomPic.draw();
+        swapTopPictures.add(topPictures.get(random));
+        swapBottomPictures.add(bottomPictures.get(random));
 
-        if (random < 6) {
-            secondTopPic = topPicArray[random + 1];
-            secondTopPic.translate(300, 0);
-            secondTopPic.draw();
+        swapTopPictures.get(swapTopPictures.size()-1).draw();
+        swapBottomPictures.get(swapBottomPictures.size()-1).draw();
 
-            secondBottomPic = bottomPicArray[random + 1];
-            secondBottomPic.translate(300, 0);
-            secondBottomPic.draw();
-
-        } else if (random == 6) {
-            secondTopPic = topPicArray[random - 1];
-            secondTopPic.translate(300, 0);
-            secondTopPic.draw();
-
-            secondBottomPic = bottomPicArray[random - 1];
-            secondBottomPic.translate(300, 0);
-            secondBottomPic.draw();
-        }
-
-        if (random < 5) {
-            thirdTopPic = topPicArray[random + 2];
-            thirdTopPic.translate(600, 0);
-            thirdTopPic.draw();
-
-            thirdBottomPic = bottomPicArray[random + 2];
-            thirdBottomPic.translate(600, 0);
-            thirdBottomPic.draw();
-
-        } else {
-            thirdTopPic = topPicArray[random - 2];
-            thirdTopPic.translate(600, 0);
-            thirdTopPic.draw();
-
-            thirdBottomPic = bottomPicArray[random - 2];
-            thirdBottomPic.translate(600, 0);
-            thirdBottomPic.draw();
-        }
+        topPictures.remove(random);
+        bottomPictures.remove(random);
 
     }
 
-    public Picture getBottomPic() {
-        return bottomPic;
+    public LinkedList<Picture> getSwapTopPictures() {
+        return swapTopPictures;
     }
 
-    public Picture getTopPic() {
-        return topPic;
-    }
-
-    public Picture getSecondBottomPic() {
-        return secondBottomPic;
-    }
-
-    public Picture getSecondTopPic() {
-        return secondTopPic;
+    public LinkedList<Picture> getSwapBottomPictures() {
+        return swapBottomPictures;
     }
 
     public void move(int speed) {
 
-        if (thirdBottomPic.getX() < - 88) {
-            bottomPic.translate(1300, 0);
-            topPic.translate(1300, 0);
+        if (swapTopPictures.get(0).getX() < - 88) {
 
-            secondBottomPic.translate(1000, 0);
-            secondTopPic.translate(1000, 0);
+            System.out.println("removed from swap");
+            System.out.println(swapTopPictures.size());
 
-            thirdBottomPic.translate(700, 0);
-            thirdTopPic.translate(700,0);
-            setObstacles();
+            swapTopPictures.get(0).translate(700,0);
+            swapBottomPictures.get(0).translate(700, 0);
+            topPictures.add(swapTopPictures.get(0));
+            bottomPictures.add(swapBottomPictures.get(0));
+            swapTopPictures.remove(0);
+            swapBottomPictures.remove(0);
+
+            System.out.println(swapTopPictures.size());
         }
 
+        if (swapTopPictures.get(swapTopPictures.size()-1).getX() <= 210 && (swapTopPictures.get(swapTopPictures.size()-1).getX() >= 200)) {
 
-        bottomPic.translate(speed, 0);
-        topPic.translate(speed, 0);
-        secondBottomPic.translate(speed, 0);
-        secondTopPic.translate(speed, 0);
-        thirdBottomPic.translate(speed,0);
-        thirdTopPic.translate(speed,0);
+            System.out.println("setobs");
+            System.out.println(swapTopPictures.size());
 
+            setObstacles();
+
+            System.out.println(swapTopPictures.size());
+
+        }
+
+        for (int i = 0; i < swapTopPictures.size(); i++) {
+            swapBottomPictures.get(i).translate(speed, 0);
+            swapTopPictures.get(i).translate(speed, 0);
+        }
     }
 
 }

@@ -10,33 +10,28 @@ public class Player {
     private Picture image;
     private boolean dead;
     private Direction direction;
-    private Direction previous;
+    //private Direction previous;
 
 
-
-    public Player(){
-        image = new Picture(10, 150 , "bird copy.png");
+    public Player() {
+        image = new Picture(10, 150, "bird copy.png");
         image.draw();
         direction = Direction.NULL;
+
     }
 
-    public void setDirection (Direction direction) {
+    public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
 
-    public void move(){
+    public void move() {
 
-       switch (direction) {
+        switch (direction) {
 
             case UP:
-                if (!(previous == Direction.UP)) {
-                    if (image.getY() > 7) {
-                        for (int i = 0; i < 6; i++) {
-                            image.translate(0, -5);
-                        }
-                    }
-                    previous = Direction.UP;
+                if (image.getY() > 7) {
+                    image.translate(0, -10);
                 }
                 break;
 
@@ -47,14 +42,13 @@ public class Player {
                 break;
 
             case NULL:
-                image.translate(0, 4);
-                previous = Direction.NULL;
+                image.translate(0, 0);
                 break;
         }
 
     }
 
-    public Picture getImage(){
+    public Picture getImage() {
         return image;
     }
 
@@ -62,7 +56,7 @@ public class Player {
         return dead;
     }
 
-    public void die(){
+    public void die() {
         dead = true;
     }
 }

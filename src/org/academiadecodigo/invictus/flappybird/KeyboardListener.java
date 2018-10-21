@@ -35,15 +35,6 @@ public class KeyboardListener implements KeyboardHandler {
         standDown.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
         key.addEventListener(standDown);
 
-        KeyboardEvent jump = new KeyboardEvent();
-        jump.setKey(KeyboardEvent.KEY_SPACE);
-        jump.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        key.addEventListener(jump);
-
-        KeyboardEvent standJump = new KeyboardEvent();
-        standUp.setKey(KeyboardEvent.KEY_SPACE);
-        standUp.setKeyboardEventType(KeyboardEventType.KEY_RELEASED);
-        key.addEventListener(standJump);
     }
 
 
@@ -57,13 +48,10 @@ public class KeyboardListener implements KeyboardHandler {
 
         }
 
-        /*if (keyboardEvent.getKey() == KeyboardEvent.KEY_UP) {
-            player.setDirection(Direction.UP);
-        }*/
-
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_UP) {
             player.setDirection(Direction.UP);
         }
+
 
     }
 
@@ -73,11 +61,7 @@ public class KeyboardListener implements KeyboardHandler {
             player.setDirection(Direction.NULL);
         }
 
-        /*if (keyboardEvent.getKey() == KeyboardEvent.KEY_UP) {
-            player.setDirection(Direction.NULL);
-        }*/
-
-        if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
+        if (keyboardEvent.getKey() == KeyboardEvent.KEY_UP) {
             player.setDirection(Direction.NULL);
         }
     }
