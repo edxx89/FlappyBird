@@ -2,7 +2,6 @@ package org.academiadecodigo.invictus.flappybird.player;
 
 
 import org.academiadecodigo.invictus.flappybird.Direction;
-import org.academiadecodigo.invictus.flappybird.Sound;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 
@@ -12,7 +11,8 @@ public class Player {
     private boolean dead;
     private Direction direction;
     private float gravity = 0.3f, gravityPlayer = 3f;
-    private float velY = 0, velYplayer = 0;
+    private float velY = 0;
+    private float velYplayer = 0;
     private final float maxSpeed = 15;
     private final float maxSpeedPlayer = 13 ;
 
@@ -22,7 +22,6 @@ public class Player {
 
     public Player() {
         image = new Picture(35, 150, "playerCharacter.png");
-        image.draw();
         direction = Direction.NULL;
     }
 
@@ -88,5 +87,9 @@ public class Player {
 
     public void die() {
         dead = true;
+    }
+
+    public void reviveChico() {
+        dead = false;
     }
 }

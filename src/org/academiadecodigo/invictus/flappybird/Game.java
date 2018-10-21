@@ -9,25 +9,39 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Player player;
+    private Picture menu;
     private Picture background;
     private Picture secondBackground;
+    private Picture gameOver;
     private Obstacles obstacles;
     private int counter;
     private int speed = -4;
-    private Picture gameOver;
-    private Sound sound;
+    private Sound backgroundMusic;
+    private Sound dieAfterSound;
+
+
+    public void newGame(){
+        new MyMouse(this);
+        menu = new Picture(0, 0, "menu.jpeg");
+        menu.draw();
+        backgroundMusic = new Sound("/Users/codecadet/Project/FlappyBird/resources/backgroundMusic.wav");
+        dieAfterSound = new Sound("/Users/codecadet/Project/FlappyBird/resources/dieAfterSound.wav");
+
+    }
 
 
     public void init() {
+        menu.delete();
         background = new Picture(0, 0, "background.jpg");
         secondBackground = new Picture(background.getWidth(), 0, "background.jpg");
         background.draw();
         secondBackground.draw();
         player = new Player();
-        new KeyboardListener(player);
+        new KeyboardListener(player, this);
         obstacles = new Obstacles();
         gameOver = new Picture(0, 0, "gameover.png");
-        sound = new Sound("/Users/codecadet/Project/FlappyBird/resources/background.wav");
+
+
         for (int i = 3; i > 0; i--) {
             Text text = new Text(background.getWidth() / 2 - 15, background.getHeight() / 2 - 10, " " + i);
             text.grow(30, 20);
@@ -41,9 +55,13 @@ public class Game {
 
             }
         }
+        player.getImage().draw();
+        start();
+        backgroundMusic.open();
     }
 
     public void start() {
+
         int score = 0;
         int iCounter = 0;
         obstacles.setObstacles();
@@ -51,7 +69,6 @@ public class Game {
         text.grow(20, 10);
         text.setColor(Color.ORANGE);
         text.draw();
-        sound.open();
 
         while (!player.isDead()) {
             try {
@@ -61,9 +78,10 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
 
-            if (player.getImage().getY() > 470) {
-                player.die();
+            if (player.getImage().getY() > 470){
+                    player.die();
             }
+
             obstacles.move(speed);
             player.move();
             moveBackground();
@@ -82,7 +100,9 @@ public class Game {
                 iCounter = 0;
             }
         }
+        backgroundMusic.close();
         gameOver();
+        dieAfterSound.open();
     }
 
 
@@ -127,6 +147,9 @@ public class Game {
         }
     }
 
+    public Sound getDieAfterSound() {
+        return dieAfterSound;
+    }
 
     public void gameOver() {
         gameOver.draw();
