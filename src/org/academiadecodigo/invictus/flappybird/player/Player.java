@@ -10,11 +10,31 @@ public class Player {
     private Picture image;
     private boolean dead;
     private Direction direction;
-    private int i = 0;
+    private float gravity = 0.3f, gravityPlayer = 3f;
+    private float velY = 0, velYplayer = 0;
+    private final float maxSpeed = 15, maxSpeedPlayer = 13 ;
+
+    public void gravityPlayer () {
+        velYplayer += gravityPlayer;
+
+        if (velYplayer > maxSpeedPlayer) {
+            velYplayer = maxSpeedPlayer;
+        }
+    }
+
+    public void gravity() {
+
+
+        velY += gravity*2;
+
+        if (velY > maxSpeed) {
+            velY = maxSpeed;
+        }
+    }
 
 
     public Player() {
-        image = new Picture(10, 150, "playerCharacter.png");
+        image = new Picture(35, 150, "playerCharacter.png");
         image.draw();
         direction = Direction.NULL;
 
@@ -25,7 +45,13 @@ public class Player {
     }
 
 
+    long previousTime;
+    long currentTime;
+    long diffTime;
+
     public void move() {
+
+
 
         switch (direction) {
 
@@ -41,15 +67,24 @@ public class Player {
                 }
                 break;*/
             case JUMP:
-                for (int i = 0; i < 6; i++) {
-                    image.translate(0, -i);
+                previousTime = System.currentTimeMillis();
+                gravityPlayer();
+                velY = gravity;
+                if (image.getY() > 0) {
+                    image.translate(0, -velYplayer);
                 }
                 break;
 
             case NULL:
-                for (i = 0; i < 5; i++) {
-                    image.translate(0, i);
-                    System.out.println(i);
+                currentTime = System.currentTimeMillis();
+
+                diffTime = currentTime - previousTime;
+
+                if(diffTime > 30) {
+                    gravity();
+                    image.translate(0, velY);
+                    previousTime = 0;
+                    currentTime = 0;
                 }
                 break;
 

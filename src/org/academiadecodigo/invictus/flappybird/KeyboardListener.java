@@ -6,8 +6,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-import java.security.Key;
-
 public class KeyboardListener implements KeyboardHandler {
 
     private Player player;
@@ -53,6 +51,9 @@ public class KeyboardListener implements KeyboardHandler {
     }
 
 
+    long previousTime;
+    long currentTime;
+    long difftime;
 
 
     @Override
@@ -83,6 +84,7 @@ public class KeyboardListener implements KeyboardHandler {
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_UP) {
             player.setDirection(Direction.NULL);
         }*/
+
 
         if (keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE) {
             player.setDirection(Direction.NULL);

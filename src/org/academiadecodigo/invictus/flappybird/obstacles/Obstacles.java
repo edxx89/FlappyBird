@@ -6,9 +6,6 @@ import java.util.LinkedList;
 
 public class Obstacles {
 
-    private Picture[] topPicArray;
-    private Picture[] bottomPicArray;
-
     private LinkedList<Picture> topPictures = new LinkedList<>();
     private LinkedList<Picture> bottomPictures = new LinkedList<>();
 
@@ -20,34 +17,23 @@ public class Obstacles {
 
     public Obstacles() {
 
-        topPicArray = new Picture[7];
+        topPictures.add(new Picture(511, -26, "topTino.png"));
+        topPictures.add(new Picture(511, -109, "topChico.png"));
+        topPictures.add(new Picture(511, -141, "topIceCream.png"));
+        topPictures.add(new Picture(511, -138, "topTurtle.png"));
+        topPictures.add(new Picture(511, -54, "topMarcio.png"));
+        topPictures.add(new Picture(511, -34, "topEdgardo.png"));
+        topPictures.add(new Picture(511, -25, "topCarlao.png"));
 
 
-        topPicArray[0] = new Picture(511, -1, "topTino.png");
-        topPicArray[1] = new Picture(511, -84, "topChico.png");
-        topPicArray[2] = new Picture(511, -116, "topIceCream.png");
-        topPicArray[3] = new Picture(511, -113, "topTurtle.png");
-        topPicArray[4] = new Picture(511, -29, "topMarcio.png");
-        topPicArray[5] = new Picture(511, -9, "topEdgardo.png");
-        topPicArray[6] = new Picture(511, 0, "topCarlao.png");
+        bottomPictures.add(new Picture(511, 325, "bottomAudrey.png"));
+        bottomPictures.add(new Picture(511, 275, "bottomMariana.png"));
+        bottomPictures.add(new Picture(511, 225, "bottomEdgardo.png"));
+        bottomPictures.add(new Picture(511, 195, "bottomCarlao.png"));
+        bottomPictures.add(new Picture(511, 375, "bottomIceCream.png"));
+        bottomPictures.add(new Picture(511, 425, "bottomChico.png"));
+        bottomPictures.add(new Picture(511, 455, "bottomTurtle.png"));
 
-        for (int i = 0; i < topPicArray.length; i++) {
-            topPictures.add(topPicArray[i]);
-        }
-
-        bottomPicArray = new Picture[7];
-
-        bottomPicArray[0] = new Picture(511, 300, "bottomAudrey.png");
-        bottomPicArray[1] = new Picture(511, 250, "bottomMariana.png");
-        bottomPicArray[2] = new Picture(511, 200, "bottomEdgardo.png");
-        bottomPicArray[3] = new Picture(511, 170, "bottomCarlao.png");
-        bottomPicArray[4] = new Picture(511, 350, "bottomIceCream.png");
-        bottomPicArray[5] = new Picture(511, 400, "bottomChico.png");
-        bottomPicArray[6] = new Picture(511, 430, "bottomTurtle.png");
-
-        for (int i = 0; i < bottomPicArray.length; i++) {
-            bottomPictures.add(bottomPicArray[i]);
-        }
     }
 
     public void setObstacles() {

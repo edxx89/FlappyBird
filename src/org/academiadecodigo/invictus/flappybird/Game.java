@@ -13,7 +13,7 @@ public class Game {
     private KeyboardListener key;
     private Obstacles obstacles;
     private int counter;
-    private int speed = -2;
+    private int speed = -4;
     private Picture gameOver;
     private Sound sound;
 
@@ -21,15 +21,15 @@ public class Game {
 
 
     public void init() {
-        background = new Picture(0, 0, "background.gif");
-        secondBackground = new Picture(background.getWidth(),0,"background.gif");
-        thirdBackground = new Picture(background.getWidth() * 2, 0, "background.gif");
+        background = new Picture(0, 0, "background.jpg");
+        secondBackground = new Picture(background.getWidth(),0, "background.jpg");
+        thirdBackground = new Picture(background.getWidth() * 2, 0, "background.jpg");
         background.draw();
         secondBackground.draw();
-        gameOver = new Picture(0, 0, "gameover.jpg");
         player = new Player();
         key = new KeyboardListener(player);
         obstacles = new Obstacles();
+        gameOver = new Picture(0, 0, "gameover.jpg");
         sound = new Sound("/Users/codecadet/Project/FlappyBird/resources/background.wav");
     }
 
@@ -74,6 +74,7 @@ public class Game {
                 iCounter = 0;
             }
         }
+        gameOver();
     }
 
 
