@@ -9,7 +9,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Player player;
-    private Picture background;
+    private Picture background, secondBackground;
     private KeyboardListener key;
     private Obstacles obstacles;
     private int counter;
@@ -20,7 +20,9 @@ public class Game {
 
     public void init() {
         background = new Picture(0, 0, "background.gif");
+        secondBackground = new Picture(510,0,"background.gif");
         background.draw();
+        secondBackground.draw();
         gameOver = new Picture(0, 0, "gameover.jpg");
         player = new Player();
         key = new KeyboardListener(player);
@@ -31,7 +33,7 @@ public class Game {
         int score = 0;
         int iCounter = 0;
 
-        obstacles.setFirstObstacles();
+        obstacles.setObstacles();
         text.grow(20, 10);
         text.setColor(Color.ORANGE);
         text.draw();
@@ -52,7 +54,7 @@ public class Game {
 
             obstacles.move(speed);
             player.move();
-            //moveBackground();
+            moveBackground();
             checkCollision();
             counter++;
             iCounter++;
@@ -94,9 +96,18 @@ public class Game {
         }
     }
 
-    /*public void moveBackground () {
+    public void moveBackground () {
         background.translate(speed,0);
-    }*/
+        secondBackground.translate(speed,0);
+
+        if (background.getX() < -background.getWidth() && background.getX() > -background.getWidth() - 10) {
+            background.translate(background.getWidth() * 2,0);
+        }
+
+        if (secondBackground.getX() < -510 && secondBackground.getX() > -520) {
+            secondBackground.translate(background.getWidth() * 2, 0);
+        }
+    }
 
     public void improvedSpeed() {
         if (speed > -11) {

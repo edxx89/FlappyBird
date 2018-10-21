@@ -50,24 +50,6 @@ public class Obstacles {
         }
     }
 
-    public void setFirstObstacles () {
-        int random = (int) (Math.random() * topPictures.size());
-
-        System.out.println("setFirstObs");
-        System.out.println(swapTopPictures.size());
-
-        swapTopPictures.add(topPictures.get(random));
-        swapBottomPictures.add(bottomPictures.get(random));
-
-        swapTopPictures.get(0).draw();
-        swapBottomPictures.get(0).draw();
-
-        topPictures.remove(random);
-        bottomPictures.remove(random);
-
-        System.out.println(swapTopPictures.size());
-
-    }
     public void setObstacles() {
         int random = (int) (Math.random() * topPictures.size());
 
@@ -94,27 +76,16 @@ public class Obstacles {
 
         if (swapTopPictures.get(0).getX() < - 88) {
 
-            System.out.println("removed from swap");
-            System.out.println(swapTopPictures.size());
-
             swapTopPictures.get(0).translate(700,0);
             swapBottomPictures.get(0).translate(700, 0);
             topPictures.add(swapTopPictures.get(0));
             bottomPictures.add(swapBottomPictures.get(0));
             swapTopPictures.remove(0);
             swapBottomPictures.remove(0);
-
-            System.out.println(swapTopPictures.size());
         }
 
         if (swapTopPictures.get(swapTopPictures.size()-1).getX() <= 210 && (swapTopPictures.get(swapTopPictures.size()-1).getX() >= 200)) {
-
-            System.out.println("setobs");
-            System.out.println(swapTopPictures.size());
-
             setObstacles();
-
-            System.out.println(swapTopPictures.size());
 
         }
 
