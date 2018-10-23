@@ -21,7 +21,7 @@ public class Player {
     private long diffTime;
 
     public Player() {
-        image = new Picture(35, 150, "playerCharacter.png");
+        image = new Picture(35, 150, "resources/playerCharacter.png");
         direction = Direction.NULL;
     }
 

@@ -14,22 +14,22 @@ public class Obstacles {
 
     public Obstacles() {
 
-        topPictures.add(new Picture(511, -26, "topTino.png"));
-        topPictures.add(new Picture(511, -109, "topChico.png"));
-        topPictures.add(new Picture(511, -141, "topIceCream.png"));
-        topPictures.add(new Picture(511, -138, "topTurtle.png"));
-        topPictures.add(new Picture(511, -54, "topMarcio.png"));
-        topPictures.add(new Picture(511, -34, "topEdgardo.png"));
-        topPictures.add(new Picture(511, -25, "topCarlao.png"));
+        topPictures.add(new Picture(511, -26, "resources/topTino.png"));
+        topPictures.add(new Picture(511, -109, "resources/topChico.png"));
+        topPictures.add(new Picture(511, -141, "resources/topIceCream.png"));
+        topPictures.add(new Picture(511, -138, "resources/topTurtle.png"));
+        topPictures.add(new Picture(511, -54, "resources/topMarcio.png"));
+        topPictures.add(new Picture(511, -34, "resources/topEdgardo.png"));
+        topPictures.add(new Picture(511, -25, "resources/topCarlao.png"));
 
 
-        bottomPictures.add(new Picture(511, 325, "bottomAudrey.png"));
-        bottomPictures.add(new Picture(511, 275, "bottomMariana.png"));
-        bottomPictures.add(new Picture(511, 225, "bottomEdgardo.png"));
-        bottomPictures.add(new Picture(511, 195, "bottomCarlao.png"));
-        bottomPictures.add(new Picture(511, 375, "bottomIceCream.png"));
-        bottomPictures.add(new Picture(511, 425, "bottomChico.png"));
-        bottomPictures.add(new Picture(511, 455, "bottomTurtle.png"));
+        bottomPictures.add(new Picture(511, 325, "resources/bottomAudrey.png"));
+        bottomPictures.add(new Picture(511, 275, "resources/bottomMariana.png"));
+        bottomPictures.add(new Picture(511, 225, "resources/bottomEdgardo.png"));
+        bottomPictures.add(new Picture(511, 195, "resources/bottomCarlao.png"));
+        bottomPictures.add(new Picture(511, 375, "resources/bottomIceCream.png"));
+        bottomPictures.add(new Picture(511, 425, "resources/bottomChico.png"));
+        bottomPictures.add(new Picture(511, 455, "resources/bottomTurtle.png"));
 
     }
 

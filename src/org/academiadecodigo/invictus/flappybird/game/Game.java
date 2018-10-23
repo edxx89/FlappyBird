@@ -22,18 +22,18 @@ public class Game {
 
     public void newGame() {
         new MyMouse(this);
-        menu = new Picture(0, 0, "menu.jpeg");
+        menu = new Picture(0, 0, "resources/menu.jpeg");
         menu.draw();
-        backgroundMusic = new Sound("/Users/codecadet/Project/FlappyBird/resources/backgroundMusic.wav");
-        dieAfterSound = new Sound("/Users/codecadet/Project/FlappyBird/resources/dieAfterSound.wav");
-        gameOver = new Picture(0, 0, "gameover.png");
+        backgroundMusic = new Sound("resources/backgroundMusic.wav");
+        dieAfterSound = new Sound("resources/dieAfterSound.wav");
+        gameOver = new Picture(0, 0, "resources/gameover.png");
     }
 
 
     public void init() {
         menu.delete();
-        background = new Picture(0, 0, "background.jpg");
-        secondBackground = new Picture(background.getWidth(), 0, "background.jpg");
+        background = new Picture(0, 0, "resources/background.jpg");
+        secondBackground = new Picture(background.getWidth(), 0, "resources/background.jpg");
         background.draw();
         secondBackground.draw();
         player = new Player();
@@ -142,7 +142,6 @@ public class Game {
     public void improvedSpeed() {
         if (speed > -10) {
             speed = --speed;
-            System.out.println(speed);
         }
     }
 

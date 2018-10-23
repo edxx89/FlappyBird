@@ -1,6 +1,5 @@
 package org.academiadecodigo.invictus.flappybird.game;
 
-import org.academiadecodigo.invictus.flappybird.game.Game;
 import org.academiadecodigo.simplegraphics.mouse.Mouse;
 import org.academiadecodigo.simplegraphics.mouse.MouseEvent;
 import org.academiadecodigo.simplegraphics.mouse.MouseEventType;
@@ -26,7 +25,6 @@ public class MyMouse implements MouseHandler {
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
 
-        System.out.println(mouseEvent.getX() +" " +mouseEvent.getY());
         if((mouseEvent.getX() > 222 && mouseEvent.getX() < 234 && mouseEvent.getY() > 325 && mouseEvent.getY() < 360) ||
                 (mouseEvent.getX() > 280 && mouseEvent.getX() < 297 && mouseEvent.getY() > 330 && mouseEvent.getY() < 365)){
             if(!clicked) {
